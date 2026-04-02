@@ -1,4 +1,4 @@
-# .NET Spec Kit
+# Specwright
 
 A spec-driven development workflow for .NET backend systems. I have been iterating through this idea for some time now. Figured I would throw into a repo.
 
