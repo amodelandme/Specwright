@@ -1,6 +1,6 @@
 # Specwright
 
-> **🚧 Work in Progress** — This framework is being built in the open, alongside the [FeatureFlagService](#) reference implementation that proves it works. Both projects evolve together.
+> **🚧 Work in Progress** — This framework is being built in the open, alongside the [FeatureFlagService](https://github.com/amodelandme/FeatureFlagService) reference implementation that proves it works. Both projects evolve together.
 
 ```
 A model-agnostic, spec-driven AI development workflow for .NET backend systems.
