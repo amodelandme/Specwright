@@ -1,5 +1,7 @@
 # AI Context — <ProjectName>
 
+**Last updated:** <YYYY-MM-DD>
+
 > **For AI assistants and new engineers:** This is the single source of truth for
 > architectural conventions, layer rules, and hard guardrails on this project.
 >
@@ -21,6 +23,7 @@
 - [Testing Conventions](#testing-conventions)
 - [Current Constraints](#current-constraints)
 - [Before You Change Anything](#before-you-change-anything)
+- [Developer Profile](#developer-profile)
 
 ---
 
@@ -217,3 +220,13 @@ Domain          → (nothing)
 5. Run the build and full test suite before making changes. Establish a clean baseline.
 6. If your change affects a layer boundary, a domain invariant, or the security model —
    discuss it before implementing. These are architectural decisions.
+
+
+---
+
+## Developer Profile
+
+**Current level:** Mid → senior (actively transitioning)
+**Learning style:** Visual learner — diagrams and concrete examples over abstract prose
+**Explanation depth:** Deep dives with .NET-specific grounding preferred
+**Goal:** Interview-ready at senior level within 6 months

@@ -1,5 +1,7 @@
 # Architecture — <ProjectName>
 
+**Last updated:** <YYYY-MM-DD>
+
 > **TL;DR**
 > - <One-sentence description of what this system does and for whom>
 > - Clean Architecture: Api → Application → Domain ← Infrastructure

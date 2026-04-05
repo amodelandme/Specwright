@@ -1,45 +1,28 @@
 # Specwright
 
-A spec-driven development workflow for .NET backend systems. I have been iterating through this idea for some time now. Figured I would throw into a repo.
+> **🚧 Work in Progress** — This framework is being built in the open, alongside the [FeatureFlagService](#) reference implementation that proves it works. Both projects evolve together.
+
+```
+A model-agnostic, spec-driven AI development workflow for .NET backend systems.
+```
 
 ---
 
-## What Is This?
+## The Problem
 
-This kit gives you two things:
+Every time you open a new AI chat session, your assistant has no idea what you're building, what decisions you've already made, or what rules your codebase lives by. You re-explain the architecture. You remind it about the DTO boundary. You watch it violate the same layer rule it violated last Tuesday.
 
-1. **Foundation documents** — living documents that serve as the source of truth for your project's architecture, current state, and roadmap. These live in `/docs` and are updated continuously throughout development.
-
-2. **Spec-level templates** — documents that govern individual features from design through implementation. A spec defines what gets built and why. Implementation notes close the loop after the work is done. These live in `/templates`.
-
-It also ships with two AI skill definitions — a **Senior .NET System Architect** and a **Senior .NET Backend Engineer** — that consume and produce these documents as part of a disciplined, spec-driven workflow.
+Most AI workflow setups bolt context onto the problem after the fact — a `CLAUDE.md` here, a `.cursor/rules` there. Specwright inverts that. **The foundation documents _are_ the workflow.** The AI skills read them. The specs enforce them. The implementation notes close the loop.
 
 ---
 
-## Folder Structure
+## What It Is
 
-```
-/docs
-  architecture.md          ← What the system is. Structural source of truth.
-  current-state.md         ← Where things stand right now. Updated continuously.
-  roadmap.md               ← Where things are going. Phase-gated plan.
-  ai-context.md            ← Guardrails and conventions. Referenced by all three above.
+Specwright gives you two things that work together:
 
-/templates
-  spec.md                  ← Design-time template. Produced by the Architect skill.
-  implementation-notes.md  ← Post-implementation template. Produced by the Engineer skill.
+**1. Foundation documents** — four living markdown files that serve as the single source of truth for your project's architecture, current state, roadmap, and conventions. Updated continuously. Referenced by every AI session.
 
-/skills
-  architect.md             ← AI skill: Senior .NET System Architect
-  engineer.md              ← AI skill: Senior .NET Backend Engineer
-
-/examples
-  architecture.md          ← Real-world example of a filled architecture doc
-  current-state.md         ← Real-world example of a filled current-state doc
-  roadmap.md               ← Real-world example of a filled roadmap
-  spec.md                  ← Real-world example of a filled feature spec
-  implementation-notes.md  ← Real-world example of filled implementation notes
-```
+**2. AI skill definitions** — an Architect skill that designs features and produces specs, and an Engineer skill that implements them critically — challenging gaps, enforcing layer boundaries, and closing the loop with implementation notes.
 
 ---
 
@@ -59,9 +42,9 @@ It also ships with two AI skill definitions — a **Senior .NET System Architect
 │  ARCHITECT      │              │  ENGINEER           │
 │  skill          │              │  skill              │
 │                 │              │                     │
-│  Reads:         │              │  Reads:             │
-│  - foundation   │   spec.md    │  - foundation docs  │
-│  - requirements │  ─────────→  │  - spec.md          │
+│  Reads:         │   spec.md    │  Reads:             │
+│  - foundation   │  ─────────→  │  - foundation docs  │
+│  - requirements │              │  - spec.md          │
 │                 │              │                     │
 │  Produces:      │              │  Produces:          │
 │  - spec.md      │              │  - working code     │
@@ -72,47 +55,151 @@ It also ships with two AI skill definitions — a **Senior .NET System Architect
 
 ### Step by step
 
-1. **Before any feature work**, the Architect reads the three foundation docs and the feature requirements.
+1. **Before any feature work**, the Architect reads the four foundation docs and the feature requirements.
 2. **The Architect produces a `spec.md`** — an implementation-ready design document that defines what gets built, why specific decisions were made, and what done looks like.
-3. **The Engineer reads the spec** critically — challenging gaps, validating assumptions, and raising concerns before writing a line of code.
+3. **The Engineer reads the spec critically** — challenging gaps, validating assumptions, and raising concerns before writing a line of code.
 4. **The Engineer implements** the feature according to the spec, deviating only when justified and documented.
 5. **The Engineer produces `implementation-notes.md`** — a post-implementation record of what was built, gaps found in the spec, deviations made, and follow-up risks.
 6. **The foundation docs are updated** to reflect the new state of the system.
 
 ---
 
-## Getting Started
+## Folder Structure
 
-### For a new project
-
-1. Copy `/docs/architecture.md`, `/docs/current-state.md`, `/docs/roadmap.md`, and `/docs/ai-context.md` into your project's `/docs` folder.
-2. Fill them in. The templates contain instructive placeholder text — replace everything in `< >` brackets and follow the inline guidance.
-3. Copy `/skills/architect.md` and `/skills/engineer.md` into your AI assistant's context (system prompt, project instructions, or equivalent).
-4. When starting a feature, load the Architect skill and the three foundation docs. Ask it to produce a `spec.md`.
-5. When implementing, load the Engineer skill and the relevant spec. Follow the workflow.
-
-### For an existing project
-
-Start with `current-state.md` — it's the fastest to fill in and immediately useful. Then backfill `architecture.md` with decisions that have already been made. `roadmap.md` last.
+```
+specwright/
+├── docs/
+│   ├── architecture.md          ← what the system is
+│   ├── current-state.md         ← where things stand right now
+│   ├── roadmap.md               ← where things are going
+│   └── ai-context.md            ← guardrails referenced by all three
+│
+├── skills/
+│   ├── architect.md             ← senior .NET system architect
+│   └── engineer.md              ← senior .NET backend engineer
+│
+├── templates/
+│   ├── foundation/              ← doc templates for new projects
+│   ├── feature/                 ← spec.md + implementation-notes.md
+│   └── developer/               ← developer-context-template.md
+│
+├── examples/                    ← real filled docs from FeatureFlagService
+│   ├── architecture.md
+│   ├── current-state.md
+│   ├── roadmap.md
+│   ├── spec.md
+│   └── implementation-notes.md
+│
+├── developer-context.md         ← personal config — gitignored, never committed
+├── .gitignore
+└── README.md
+```
 
 ---
 
-## Philosophy
+## The Skills
 
-- **Specs are not tickets.** A spec defines the design, the rationale, the constraints, and what done looks like. A ticket is a task. This kit produces specs.
-- **Foundation docs are living.** They are wrong the moment they stop being updated. Treat them like code.
-- **Decisions have rationale.** Every significant decision in a spec includes a "why." Future maintainers are not mind-readers.
-- **The engineer is not a transcription service.** The Engineer skill is expected to push back on specs, catch gaps, and improve the design — not blindly execute.
-- **Close the loop.** `implementation-notes.md` feeds back into the foundation docs. The cycle is: design → build → document → update → repeat.
+Both skills load your foundation documents and `developer-context.md` at the start of every session. They adapt explanation depth, feedback tone, diagram usage, and mentorship behavior to match the profile you declare there.
+
+### `skills/architect.md` — Senior .NET System Architect
+
+Reads the foundation docs, designs the feature, and produces an implementation-ready `spec.md`. Every decision includes a rationale. Every scope item names a file and a layer.
+
+**Reads on load:**
+- `docs/architecture.md`
+- `docs/current-state.md`
+- `docs/roadmap.md`
+- `docs/ai-context.md`
+- `developer-context.md`
+
+### `skills/engineer.md` — Senior .NET Backend Engineer
+
+Reads the spec critically — challenges gaps, validates assumptions — then implements, verifies, and produces `implementation-notes.md` to close the loop. Pushes back when the spec introduces unnecessary complexity or violates layer boundaries.
+
+**Reads on load:**
+- `docs/architecture.md`
+- `docs/current-state.md`
+- `docs/ai-context.md`
+- `docs/decisions/<feature>/spec.md`
+- `developer-context.md`
+
+---
+
+## Developer Context
+
+`developer-context.md` is a personal configuration file that tells the skills who is doing the building — not what is being built. It captures your current level, learning style, career goals, engineering values, and interaction preferences.
+
+It is **gitignored by design**. The project's source of truth is shared. Your personal AI configuration is not.
+
+Copy `templates/developer/developer-context-template.md` to your repo root, fill it in, and add `developer-context.md` to your `.gitignore`. Both skills will adapt to it automatically.
+
+---
+
+## Getting Started
+
+### New project
+
+1. Copy the four files from `templates/foundation` into your project's `/docs` folder. Replace every `< >` placeholder with your project's reality.
+2. Copy `templates/developer/developer-context-template.md` to your repo root as `developer-context.md`. Fill it in honestly. Add it to `.gitignore`.
+3. Load `skills/architect.md` into your AI assistant's system prompt or project instructions alongside the four foundation docs. Ask it to design your first feature.
+4. Switch to `skills/engineer.md` with the generated `spec.md` and the foundation docs. The Engineer challenges the spec, implements, and closes the loop.
+
+### Existing project
+
+Start with `docs/current-state.md` — it's the fastest to fill in and immediately useful. Backfill `docs/architecture.md` with decisions already made. `docs/roadmap.md` last.
 
 ---
 
 ## Compatibility
 
-The skill definitions use plain markdown and are model-agnostic. They work with any AI assistant that accepts a system prompt or project-level instructions: Claude, GPT-4, Gemini, Copilot, or any local model.
+The skill definitions use plain markdown and are **model-agnostic**. They work with any AI assistant that accepts a system prompt or project-level instructions:
+
+`Claude` · `GPT-4` · `Gemini` · `Copilot` · `Continue` · `local models`
+
+---
+
+## Project Status
+
+| Component | Status | Notes |
+|---|---|---|
+| Foundation doc templates | ✅ Complete | All four with inline guidance |
+| Architect skill | ✅ Complete | Adaptive via `developer-context.md` |
+| Engineer skill | ✅ Complete | Adaptive via `developer-context.md` |
+| Spec + impl-notes templates | ✅ Complete | In `templates/feature/` |
+| Developer context template | ✅ Complete | Personal config, gitignored |
+| FeatureFlagService examples | ✅ Complete | Real filled docs in `examples/` |
+| Setup automation / CLI | 🔄 In Progress | One-command project initialization |
+| Multi-skill session handoff | ⏳ Planned | Handoff protocols between sessions |
+| VS Code extension | ⏳ Planned | Context loading without copy-paste |
+
+---
+
+## Philosophy
+
+**Specs are not tickets.** A spec defines the design, the rationale, the constraints, and what done looks like. A ticket is a task. This framework produces specs.
+
+**Foundation docs are living.** They are wrong the moment they stop being updated. Treat them like code — version them, maintain them, trust them.
+
+**Decisions have rationale.** Every significant choice in a spec includes a "why." Future maintainers are not mind-readers. Neither are AI assistants.
+
+**The engineer is not a transcription service.** The Engineer skill is expected to push back on specs, catch gaps, and improve the design — not blindly execute.
+
+**Context is personal.** `developer-context.md` is gitignored by design. The project's source of truth is shared. The developer's personal AI configuration is not.
+
+**Model-agnostic by design.** Plain markdown, no vendor lock-in. Works with any AI assistant that accepts a system prompt.
 
 ---
 
 ## Examples
 
-The `/examples` folder contains real-world filled documents from a production .NET feature flag service. Use them as reference when filling in your own templates.
+The `/examples` folder contains real filled documents from a production .NET feature flag service. Use them as reference when filling in your own templates — they show what the framework looks like in practice, not just in theory.
+
+---
+
+## License
+
+MIT — Jose Rodriguez-Marrero
+
+---
+
+> **Contributing:** This project is in active development. Ideas, issues, and pull requests are welcome. If you're using Specwright on your own project, open an issue and share what's working and what isn't.

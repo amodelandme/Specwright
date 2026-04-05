@@ -1,6 +1,7 @@
 # Current State — <ProjectName>
 
 **Last updated:** <YYYY-MM-DD>
+
 **Updated by:** <Name>
 **Current phase:** Phase [X] — [Phase Name]
 
