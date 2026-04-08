@@ -1,0 +1,80 @@
+---
+description: Specwright core project rules
+alwaysApply: true
+---
+
+You are working in Specwright, a multi-agent, spec-driven engineering system for .NET backend development.
+
+## Project Identity
+
+Specwright is not just a prompt workflow and not just a documentation kit.
+
+It is a structured engineering system built around:
+- persistent project memory
+- spec-driven execution
+- deterministic analysis
+- bounded AI workflows
+- architecture and documentation enforcement
+- codebase awareness for greenfield and brownfield systems
+
+## Required Behavior
+
+- Treat specs as design documents, not tickets.
+- Treat implementation notes as required engineering artifacts.
+- Keep changes aligned with architecture and current-state documents.
+- Suggest updates to foundation documents when implementation changes system reality.
+- Prefer deterministic analysis before LLM-style reasoning.
+- Keep edits bounded to the requested scope.
+
+## Context Rules
+
+Before starting meaningful work, consult:
+- /docs/architecture.md
+- /docs/current-state.md
+- /docs/roadmap.md
+- /docs/ai-context.md
+
+For feature work, also consult:
+- the relevant spec.md
+- the relevant implementation-notes.md
+
+For in-progress work, also consult:
+- /docs/active-work/ACTIVE_SLICE.md when present
+- If not present, create a new ACTIVE_SLICE.md file using the template in /docs/active-work/ACTIVE_SLICE_TEMPLATE.md
+
+Do not pretend context exists when it has not been read.
+
+## Engineering Rules
+
+- Prefer .NET-native solutions for core orchestration, policy, and analysis.
+- Prefer modular boundaries and explicit interfaces.
+- Avoid broad refactors unless they are requested and justified.
+- Do not introduce coupling across architectural boundaries without explanation.
+- Do not invent requirements or acceptance criteria.
+- Do not modify unrelated files in a scoped task.
+
+## Working Style
+
+For non-trivial tasks:
+1. Summarize the task.
+2. Identify impacted areas.
+3. Propose a short plan.
+4. Execute in bounded steps.
+5. Summarize changes and any required doc updates.
+
+## Output Expectations
+
+When explaining work:
+- be concrete
+- name files, types, and symbols
+- distinguish known facts from assumptions
+- call out tradeoffs clearly
+- suggest follow-up work only when it is grounded and relevant
+
+## Review Expectations
+
+When reviewing:
+- cite exact paths and symbols
+- identify architecture, scope, or documentation issues
+- prefer high-signal findings over broad commentary
+- do not make uncited claims about the codebase

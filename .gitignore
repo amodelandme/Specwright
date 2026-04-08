@@ -1,2 +1,58 @@
-# Personal developer configuration — never commit
-/developer-context.md
+# Build output
+**/bin/
+**/obj/
+**/artifacts/
+**/out/
+**/dist/
+**/build/
+
+# Test and coverage output
+**/TestResults/
+**/coverage/
+**/.coverage/
+**/coverage-report/
+
+# Package caches
+**/node_modules/
+**/.pnpm-store/
+**/packages/
+**/.nuget/
+
+# Logs and temp files
+**/*.log
+**/logs/
+**/tmp/
+**/temp/
+**/.tmp/
+
+# OS / editor noise
+**/.DS_Store
+**/Thumbs.db
+**/.idea/
+**/.vs/
+
+# Secrets and local env
+**/.env
+**/.env.*
+**/secrets/
+**/*.pfx
+**/*.snk
+**/*secrets*.json
+**/appsettings.Development.json
+**/appsettings.Local.json
+
+# Generated or heavy assets
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.webp
+**/*.pdf
+**/*.zip
+**/*.nupkg
+
+# Research / scratch zones
+**/playground/
+**/scratch/
+**/research-dumps/
+**/notes-dump/
