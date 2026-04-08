@@ -1,205 +1,237 @@
 # Specwright
 
-> **🚧 Work in Progress** — This framework is being built in the open, alongside the [FeatureFlagService](https://github.com/amodelandme/FeatureFlagService) reference implementation that proves it works. Both projects evolve together.
+![Phase 0](https://img.shields.io/badge/status-phase_0_bootstrap-blue)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4)
+![Aspire](https://img.shields.io/badge/Aspire-orchestrated-6E4AFF)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-primary_store-336791)
+![License MIT](https://img.shields.io/badge/license-MIT-green)
 
+> Deterministic-first, spec-driven engineering for AI-assisted .NET teams.
+
+Specwright is a codebase-aware engineering platform for teams that want AI to operate inside architecture, policy, and evidence boundaries instead of around them.
+
+It is being built to give AI-assisted engineering something most teams still do not have: durable project memory, bounded context, deterministic analysis, and workflow-level accountability.
+
+It is being built around a simple rule:
+
+> LLMs should not be the first component to inspect a codebase.
+
+Before model reasoning happens, Specwright is designed to inspect code, diffs, and documents deterministically, assemble bounded context, apply guardrails, and record why an outcome was accepted or rejected.
+
+## At a Glance
+
+- **Built for `.NET 10`** with `.NET Aspire`, `ASP.NET Core`, `EF Core`, `Roslyn`, and `PostgreSQL`
+- **Deterministic-first by design** so workflows start from evidence, not guesswork
+- **Markdown-driven project memory** through `architecture.md`, `current-state.md`, `roadmap.md`, and `ai-context.md`
+- **Policy-enforced workflows** designed to connect intent, implementation, and review
+- **Brownfield-friendly** so teams can understand existing systems instead of starting from scratch
+
+## Table of Contents
+
+- [At a Glance](#at-a-glance)
+- [Why This Matters](#why-this-matters)
+- [What Specwright Is](#what-specwright-is)
+- [How It Works](#how-it-works)
+- [Current Status](#current-status)
+- [What Makes It Different](#what-makes-it-different)
+- [Start Here](#start-here)
+- [If You Are Evaluating the Product Direction](#if-you-are-evaluating-the-product-direction)
+- [If You Want to Use the Document Model Right Now](#if-you-want-to-use-the-document-model-right-now)
+- [If You Want the Deep-Dive Architecture Thinking](#if-you-want-the-deep-dive-architecture-thinking)
+- [Explore the Project](#explore-the-project)
+- [Philosophy](#philosophy)
+- [Roadmap Snapshot](#roadmap-snapshot)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Why This Matters
+
+Every new AI session starts with amnesia.
+
+Your assistant does not remember what you are building, what decisions were already made, what rules your codebase follows, or what tradeoffs the team already accepted. So you re-explain the architecture, re-state the roadmap, and re-teach the same constraints over and over.
+
+That is annoying in small projects. In real systems, it becomes risky:
+
+- architecture rules get violated
+- specs drift from implementation
+- reviews become opinionated instead of evidence-based
+- project knowledge disappears between sessions
+- "smart" output arrives with no audit trail
+
+Specwright exists to make AI-assisted engineering more structured, more explainable, and more repeatable.
+
+## What Specwright Is
+
+Specwright is evolving into a `.NET 10` platform built with `.NET Aspire`, `ASP.NET Core`, `EF Core`, `Roslyn`, and `PostgreSQL`.
+
+Its goal is to combine:
+
+- persistent project memory
+- spec-driven delivery
+- deterministic analysis
+- bounded context assembly
+- policy-enforced workflows
+- auditable execution records
+
+The current design is centered around three layers:
+
+1. **Foundation layer**  
+   Shared project memory in markdown: `architecture.md`, `current-state.md`, `roadmap.md`, and `ai-context.md`.
+2. **Spec layer**  
+   Feature-level design and implementation accountability through `spec.md` and `implementation-notes.md`.
+3. **Execution layer**  
+   Workflows, capabilities, retrieval, agents, policies, and CI enforcement.
+
+## How It Works
+
+```mermaid
+flowchart LR
+    entryPoints["CLI / UI / Editor / CI"] --> api["API entry points"]
+    api --> orchestrator["Workflow orchestrator"]
+    orchestrator --> capabilities["Deterministic capabilities"]
+    orchestrator --> context["Context assembler"]
+    orchestrator --> agents["Agent layer"]
+    orchestrator --> policy["Policy engine"]
+    orchestrator --> journal["Execution journal"]
+    journal --> postgres["PostgreSQL"]
 ```
-A model-agnostic, spec-driven AI development workflow for .NET backend systems.
-```
 
----
+At a high level:
 
-## The Problem
+1. A user or system invokes a workflow from the CLI, editor, UI, or CI.
+2. Specwright gathers deterministic facts first: code, diffs, symbols, and documents.
+3. A bounded context packet is assembled with evidence, scope, and known unknowns.
+4. An agent reasons only after the deterministic groundwork is done.
+5. Policies validate required artifacts and evidence quality.
+6. The outcome is recorded so the workflow can be explained later.
 
-Every time you open a new AI chat session, your assistant has no idea what you're building, what decisions you've already made, or what rules your codebase lives by. You re-explain the architecture. You remind it about the DTO boundary. You watch it violate the same layer rule it violated last Tuesday.
+This is the difference between "better prompts" and an actual engineering system.
 
-Most AI workflow setups bolt context onto the problem after the fact — a `CLAUDE.md` here, a `.cursor/rules` there. Specwright inverts that. **The foundation documents _are_ the workflow.** The AI skills read them. The specs enforce them. The implementation notes close the loop.
+## Current Status
 
----
+Specwright is currently in **Phase 0: platform reset and foundation setup**.
 
-## What It Is
+The direction is now defined, but the runnable `.NET 10 + Aspire + PostgreSQL` scaffold is still being built. Today, this repository contains the architecture, roadmap, templates, examples, and manual workflow assets that define the contract the platform will automate.
 
-Specwright gives you two things that work together:
+> **Current reality:** the docs are ahead of the runtime on purpose. The product direction is defined; the executable platform is the next major step.
 
-**1. Foundation documents** — four living markdown files that serve as the single source of truth for your project's architecture, current state, roadmap, and conventions. Updated continuously. Referenced by every AI session.
+Start here if you want the clearest picture of where the project is headed and what is true today:
 
-**2. AI skill definitions** — an Architect skill that designs features and produces specs, and an Engineer skill that implements them critically — challenging gaps, enforcing layer boundaries, and closing the loop with implementation notes.
+- [`docs/architecture.md`](docs/architecture.md)
+- [`docs/current-state.md`](docs/current-state.md)
+- [`docs/roadmap.md`](docs/roadmap.md)
+- [`docs/ai-context.md`](docs/ai-context.md)
 
----
+## What Makes It Different
 
-## The Workflow
+- **Deterministic-first**  
+  Specwright prefers Roslyn, diff inspection, and document parsing before model reasoning.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        FOUNDATION LAYER                         │
-│  architecture.md  ←→  current-state.md  ←→  roadmap.md         │
-│                         ↑                                       │
-│                    ai-context.md                                │
-│              (single source of guardrails)                      │
-└─────────────────────────────────────────────────────────────────┘
-         ↑ read before designing          ↑ update after shipping
-         │                                │
-┌────────┴────────┐              ┌────────┴────────────┐
-│  ARCHITECT      │              │  ENGINEER           │
-│  skill          │              │  skill              │
-│                 │              │                     │
-│  Reads:         │   spec.md    │  Reads:             │
-│  - foundation   │  ─────────→  │  - foundation docs  │
-│  - requirements │              │  - spec.md          │
-│                 │              │                     │
-│  Produces:      │              │  Produces:          │
-│  - spec.md      │              │  - working code     │
-└─────────────────┘              │  - implementation-  │
-                                 │    notes.md         │
-                                 └─────────────────────┘
-```
+- **Bounded context by default**  
+  Context is assembled deliberately instead of dumping the whole repo into a prompt.
 
-### Step by step
+- **Markdown as source of truth**  
+  Foundation and feature documents stay human-readable, versioned, and portable.
 
-1. **Before any feature work**, the Architect reads the four foundation docs and the feature requirements.
-2. **The Architect produces a `spec.md`** — an implementation-ready design document that defines what gets built, why specific decisions were made, and what done looks like.
-3. **The Engineer reads the spec critically** — challenging gaps, validating assumptions, and raising concerns before writing a line of code.
-4. **The Engineer implements** the feature according to the spec, deviating only when justified and documented.
-5. **The Engineer produces `implementation-notes.md`** — a post-implementation record of what was built, gaps found in the spec, deviations made, and follow-up risks.
-6. **The foundation docs are updated** to reflect the new state of the system.
+- **Policy-enforced discipline**  
+  Required artifacts, citations, and architecture rules are meant to be checked, not merely suggested.
 
----
+- **Built for brownfield understanding**  
+  The platform is designed to help teams understand existing systems, not just greenfield projects.
 
-## Folder Structure
+## Start Here
 
-```
-specwright/
-├── docs/
-│   ├── architecture.md          ← what the system is
-│   ├── current-state.md         ← where things stand right now
-│   ├── roadmap.md               ← where things are going
-│   └── ai-context.md            ← guardrails referenced by all three
-│
-├── skills/
-│   ├── architect.md             ← senior .NET system architect
-│   └── engineer.md              ← senior .NET backend engineer
-│
-├── templates/
-│   ├── foundation/              ← doc templates for new projects
-│   ├── feature/                 ← spec.md + implementation-notes.md
-│   └── developer/               ← developer-context-template.md
-│
-├── examples/                    ← real filled docs from FeatureFlagService
-│   ├── architecture.md
-│   ├── current-state.md
-│   ├── roadmap.md
-│   ├── spec.md
-│   └── implementation-notes.md
-│
-├── developer-context.md         ← personal config — gitignored, never committed
-├── .gitignore
-└── README.md
-```
+### If You Are Evaluating the Product Direction
 
----
+Read the foundation docs in this order:
 
-## The Skills
+1. [`docs/architecture.md`](docs/architecture.md)
+2. [`docs/current-state.md`](docs/current-state.md)
+3. [`docs/roadmap.md`](docs/roadmap.md)
+4. [`docs/ai-context.md`](docs/ai-context.md)
 
-Both skills load your foundation documents and `developer-context.md` at the start of every session. They adapt explanation depth, feedback tone, diagram usage, and mentorship behavior to match the profile you declare there.
+### If You Want to Use the Document Model Right Now
 
-### `skills/architect.md` — Senior .NET System Architect
+1. Start with the templates in `templates/foundation/`.
+2. Use the examples in `examples/` as style references.
+3. Use `skills/architect.md` and `skills/engineer.md` as a manual workflow layer.
 
-Reads the foundation docs, designs the feature, and produces an implementation-ready `spec.md`. Every decision includes a rationale. Every scope item names a file and a layer.
+### If You Want the Deep-Dive Architecture Thinking
 
-**Reads on load:**
-- `docs/architecture.md`
-- `docs/current-state.md`
-- `docs/roadmap.md`
-- `docs/ai-context.md`
-- `developer-context.md`
+Read [`new-Specwright-arch-draft.md`](new-Specwright-arch-draft.md). It captures the broader architecture direction that informed the current `docs/` set.
 
-### `skills/engineer.md` — Senior .NET Backend Engineer
+## Explore the Project
 
-Reads the spec critically — challenges gaps, validates assumptions — then implements, verifies, and produces `implementation-notes.md` to close the loop. Pushes back when the spec introduces unnecessary complexity or violates layer boundaries.
+### `docs/`
 
-**Reads on load:**
-- `docs/architecture.md`
-- `docs/current-state.md`
-- `docs/ai-context.md`
-- `docs/decisions/<feature>/spec.md`
-- `developer-context.md`
+The new center of gravity for this project.
 
----
+- [`docs/architecture.md`](docs/architecture.md): what Specwright is being built to become
+- [`docs/current-state.md`](docs/current-state.md): what is true right now
+- [`docs/roadmap.md`](docs/roadmap.md): phased execution plan
+- [`docs/ai-context.md`](docs/ai-context.md): guardrails and working rules
+- [`docs/decisions/README.md`](docs/decisions/README.md): ADR conventions and decision tracking
 
-## Developer Context
+### `templates/`
 
-`developer-context.md` is a personal configuration file that tells the skills who is doing the building — not what is being built. It captures your current level, learning style, career goals, engineering values, and interaction preferences.
+These are still valuable today. They show the artifact model the platform is designed to generate, enforce, and keep current.
 
-It is **gitignored by design**. The project's source of truth is shared. Your personal AI configuration is not.
+- `templates/foundation/`: templates for `architecture.md`, `current-state.md`, `roadmap.md`, and `ai-context.md`
+- `templates/feature/`: templates for `spec.md` and `implementation-notes.md`
+- `templates/developer/`: `developer-context-template.md`
 
-Copy `templates/developer/developer-context-template.md` to your repo root, fill it in, and add `developer-context.md` to your `.gitignore`. Both skills will adapt to it automatically.
+### `examples/`
 
----
+Reference examples of filled documents from a production `.NET` feature flag service:
 
-## Getting Started
+- `examples/architecture-example.md`
+- `examples/current-state-example.md`
+- `examples/roadmap-example.md`
+- `examples/spec-example.md`
+- `examples/implementation-notes-example.md`
 
-### New project
+These are examples of the document model, not examples of the future Specwright runtime.
 
-1. Copy the four files from `templates/foundation` into your project's `/docs` folder. Replace every `< >` placeholder with your project's reality.
-2. Copy `templates/developer/developer-context-template.md` to your repo root as `developer-context.md`. Fill it in honestly. Add it to `.gitignore`.
-3. Load `skills/architect.md` into your AI assistant's system prompt or project instructions alongside the four foundation docs. Ask it to design your first feature.
-4. Switch to `skills/engineer.md` with the generated `spec.md` and the foundation docs. The Engineer challenges the spec, implements, and closes the loop.
+### `skills/`
 
-### Existing project
+The skill files remain useful as a manual workflow while the platform is being built:
 
-Start with `docs/current-state.md` — it's the fastest to fill in and immediately useful. Backfill `docs/architecture.md` with decisions already made. `docs/roadmap.md` last.
+- `skills/architect.md`
+- `skills/engineer.md`
 
----
-
-## Compatibility
-
-The skill definitions use plain markdown and are **model-agnostic**. They work with any AI assistant that accepts a system prompt or project-level instructions:
-
-`Claude` · `GPT-4` · `Gemini` · `Copilot` · `Continue` · `local models`
-
----
-
-## Project Status
-
-| Component | Status | Notes |
-|---|---|---|
-| Foundation doc templates | ✅ Complete | All four with inline guidance |
-| Architect skill | ✅ Complete | Adaptive via `developer-context.md` |
-| Engineer skill | ✅ Complete | Adaptive via `developer-context.md` |
-| Spec + impl-notes templates | ✅ Complete | In `templates/feature/` |
-| Developer context template | ✅ Complete | Personal config, gitignored |
-| FeatureFlagService examples | ✅ Complete | Real filled docs in `examples/` |
-| Setup automation / CLI | 🔄 In Progress | One-command project initialization |
-| Multi-skill session handoff | ⏳ Planned | Handoff protocols between sessions |
-| VS Code extension | ⏳ Planned | Context loading without copy-paste |
-
----
+They are still helpful if you want to use the Specwright document model with your current AI tooling today, but they are no longer the whole story.
 
 ## Philosophy
 
-**Specs are not tickets.** A spec defines the design, the rationale, the constraints, and what done looks like. A ticket is a task. This framework produces specs.
+**Specs are not tickets.** A spec should capture design intent, rationale, constraints, and what done means.
 
-**Foundation docs are living.** They are wrong the moment they stop being updated. Treat them like code — version them, maintain them, trust them.
+**Foundation docs are living system memory.** If they are stale, both humans and AI are working from fiction.
 
-**Decisions have rationale.** Every significant choice in a spec includes a "why." Future maintainers are not mind-readers. Neither are AI assistants.
+**Deterministic analysis comes before model reasoning.** Models are useful, but they should operate on bounded evidence instead of first-contact guesswork.
 
-**The engineer is not a transcription service.** The Engineer skill is expected to push back on specs, catch gaps, and improve the design — not blindly execute.
+**Evidence beats confident prose.** A workflow outcome should be explainable after the fact.
 
-**Context is personal.** `developer-context.md` is gitignored by design. The project's source of truth is shared. The developer's personal AI configuration is not.
+**The engineer is not a transcription service.** Good engineering workflows challenge assumptions, surface risks, and improve the design.
 
-**Model-agnostic by design.** Plain markdown, no vendor lock-in. Works with any AI assistant that accepts a system prompt.
+**Model-agnostic where it matters.** The system is `.NET`-first, but its core workflow concepts should not require lock-in to a single model provider.
 
----
+## Roadmap Snapshot
 
-## Examples
+- **Phase 0:** platform reset + Aspire bootstrap
+- **Phase 1:** analyzer vertical slice
+- **Phase 2:** foundation generator + retrieval hardening
+- **Phase 3:** policy engine + reviewer gate MVP
+- **Phase 4:** CI and observability expansion
+- **Phase 5:** modular extraction + packaging transition
 
-The `/examples` folder contains real filled documents from a production .NET feature flag service. Use them as reference when filling in your own templates — they show what the framework looks like in practice, not just in theory.
+The canonical roadmap lives in [`docs/roadmap.md`](docs/roadmap.md).
 
----
+## Contributing
+
+Specwright is being built in the open. Ideas, issues, and pull requests are welcome, especially if they help clarify the platform architecture, document model, or bootstrap path.
+
+If you are contributing, use the `docs/` set as your starting context for every session.
 
 ## License
 
-MIT — Jose Rodriguez-Marrero
-
----
-
-> **Contributing:** This project is in active development. Ideas, issues, and pull requests are welcome. If you're using Specwright on your own project, open an issue and share what's working and what isn't.
+MIT - Jose Rodriguez-Marrero
