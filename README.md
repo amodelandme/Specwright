@@ -1,30 +1,18 @@
 # Specwright
 
-![Phase 0](https://img.shields.io/badge/status-phase_0_bootstrap-blue)
+![Phase 0](https://img.shields.io/badge/status-phase_0_foundation-blue)
 ![.NET 10](https://img.shields.io/badge/.NET-10-512BD4)
 ![Aspire](https://img.shields.io/badge/Aspire-orchestrated-6E4AFF)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-primary_store-336791)
 ![License MIT](https://img.shields.io/badge/license-MIT-green)
 
-> Deterministic-first, spec-driven engineering for AI-assisted .NET teams.
+> Deterministic-first, policy-enforced engineering for AI-assisted .NET teams.
 
-Specwright is a codebase-aware engineering platform for teams that want AI to operate inside architecture, policy, and evidence boundaries instead of around them.
+Specwright is a codebase-aware engineering operating system for teams that want AI to operate inside architecture, policy, and evidence boundaries instead of around them.
 
-It is being built to give AI-assisted engineering something most teams still do not have: durable project memory, bounded context, deterministic analysis, and workflow-level accountability.
+It provides durable project memory, bounded context assembly, deterministic analysis, and adaptive workflow governance so AI outputs remain auditable and aligned with architectural intent.
 
-It is being built around a simple rule:
-
-> LLMs should not be the first component to inspect a codebase.
-
-Before model reasoning happens, Specwright is designed to inspect code, diffs, and documents deterministically, assemble bounded context, apply guardrails, and record why an outcome was accepted or rejected.
-
-## At a Glance
-
-- **Built for `.NET 10`** with `.NET Aspire`, `ASP.NET Core`, `EF Core`, `Roslyn`, and `PostgreSQL`
-- **Deterministic-first by design** so workflows start from evidence, not guesswork
-- **Markdown-driven project memory** through `architecture.md`, `current-state.md`, `roadmap.md`, and `ai-context.md`
-- **Policy-enforced workflows** designed to connect intent, implementation, and review
-- **Brownfield-friendly** so teams can understand existing systems instead of starting from scratch
+---
 
 ## Table of Contents
 
@@ -35,52 +23,97 @@ Before model reasoning happens, Specwright is designed to inspect code, diffs, a
 - [Current Status](#current-status)
 - [What Makes It Different](#what-makes-it-different)
 - [Start Here](#start-here)
-- [If You Are Evaluating the Product Direction](#if-you-are-evaluating-the-product-direction)
-- [If You Want to Use the Document Model Right Now](#if-you-want-to-use-the-document-model-right-now)
-- [If You Want the Deep-Dive Architecture Thinking](#if-you-want-the-deep-dive-architecture-thinking)
 - [Explore the Project](#explore-the-project)
 - [Philosophy](#philosophy)
 - [Roadmap Snapshot](#roadmap-snapshot)
 - [Contributing](#contributing)
 - [License](#license)
 
+---
+
+## At a Glance
+
+- Built for `.NET 10` with `.NET Aspire`, `ASP.NET Core`, `EF Core`, `Roslyn`, and `PostgreSQL`
+- Deterministic-first architecture: analysis before model reasoning
+- Markdown-based system memory (`architecture.md`, `current-state.md`, `roadmap.md`, `ai-context.md`)
+- Capability-driven execution model (not agent blobs)
+- Policy-enforced workflows with impact-based rigor (L1/L2/L3)
+- Designed for both greenfield and brownfield systems
+
+---
+
 ## Why This Matters
 
-Every new AI session starts with amnesia.
+Every AI session starts with amnesia.
 
-Your assistant does not remember what you are building, what decisions were already made, what rules your codebase follows, or what tradeoffs the team already accepted. So you re-explain the architecture, re-state the roadmap, and re-teach the same constraints over and over.
+Your assistant does not know:
 
-That is annoying in small projects. In real systems, it becomes risky:
+- what your system looks like
+- what decisions have already been made
+- what rules your architecture enforces
+- what tradeoffs your team has accepted
+
+So you repeat yourself.
+
+In real systems, this becomes risk:
 
 - architecture rules get violated
 - specs drift from implementation
-- reviews become opinionated instead of evidence-based
-- project knowledge disappears between sessions
-- "smart" output arrives with no audit trail
+- reviews become subjective
+- outputs are not auditable
+- decisions disappear between sessions
 
-Specwright exists to make AI-assisted engineering more structured, more explainable, and more repeatable.
+Specwright exists to fix that.
+
+---
 
 ## What Specwright Is
 
-Specwright is evolving into a `.NET 10` platform built with `.NET Aspire`, `ASP.NET Core`, `EF Core`, `Roslyn`, and `PostgreSQL`.
+Specwright is a `.NET 10` engineering platform built around three layers:
 
-Its goal is to combine:
+### 1. Foundation Layer
 
-- persistent project memory
-- spec-driven delivery
-- deterministic analysis
-- bounded context assembly
-- policy-enforced workflows
-- auditable execution records
+Shared project memory:
 
-The current design is centered around three layers:
+- `architecture.md`
+- `current-state.md`
+- `roadmap.md`
+- `ai-context.md`
 
-1. **Foundation layer**  
-   Shared project memory in markdown: `architecture.md`, `current-state.md`, `roadmap.md`, and `ai-context.md`.
-2. **Spec layer**  
-   Feature-level design and implementation accountability through `spec.md` and `implementation-notes.md`.
-3. **Execution layer**  
-   Workflows, capabilities, retrieval, agents, policies, and CI enforcement.
+These define:
+
+- system intent
+- current reality
+- future direction
+- operational rules
+
+---
+
+### 2. Spec Layer
+
+Design and execution accountability:
+
+- `spec.md`
+- `implementation-notes.md`
+
+This connects:
+
+- design → implementation → reality
+
+---
+
+### 3. Execution Layer
+
+The runtime system (in progress):
+
+- workflows
+- capabilities
+- context assembly
+- agents
+- policy and governance
+- CI/PR enforcement
+
+---
 
 ## How It Works
 
@@ -96,141 +129,137 @@ flowchart LR
     journal --> postgres["PostgreSQL"]
 ```
 
-At a high level:
+**Execution Flow**
 
-1. A user or system invokes a workflow from the CLI, editor, UI, or CI.
-2. Specwright gathers deterministic facts first: code, diffs, symbols, and documents.
-3. A bounded context packet is assembled with evidence, scope, and known unknowns.
-4. An agent reasons only after the deterministic groundwork is done.
-5. Policies validate required artifacts and evidence quality.
-6. The outcome is recorded so the workflow can be explained later.
+1. A workflow is triggered from CLI, UI, editor, or CI.
+2. Deterministic analysis runs first (code, diffs, documents).
+3. A bounded context packet is assembled.
+4. An agent reasons over that bounded context.
+5. Policies validate correctness and completeness.
+6. The outcome is recorded with evidence.
 
-This is the difference between "better prompts" and an actual engineering system.
+---
 
-## Current Status
+**Current Status**
 
-Specwright is currently in **Phase 0: platform reset and foundation setup**.
+Specwright is in **Phase 0: Foundation Stabilization**.
 
-The direction is now defined, but the runnable `.NET 10 + Aspire + PostgreSQL` scaffold is still being built. Today, this repository contains the architecture, roadmap, templates, examples, and manual workflow assets that define the contract the platform will automate.
+The architecture is defined, but the runtime system is not yet implemented.
 
-> **Current reality:** the docs are ahead of the runtime on purpose. The product direction is defined; the executable platform is the next major step.
+Current reality:
 
-Start here if you want the clearest picture of where the project is headed and what is true today:
+architecture is aligned and stable
+foundation docs are the source of truth
+workflows are manual
+no enforcement layer exists yet
+no runtime orchestration exists yet
 
-- [`docs/architecture.md`](docs/architecture.md)
-- [`docs/current-state.md`](docs/current-state.md)
-- [`docs/roadmap.md`](docs/roadmap.md)
-- [`docs/ai-context.md`](docs/ai-context.md)
+Next step:
+
+move from defined system → executable platform
+
+Start here:
+
+[docs/architecture.md](/docs/architecture.md)
+[docs/current-state.md](/docs/current-state.md)
+[docs/roadmap.md](/docs/roadmap.md)
+[docs/ai-context.md](/docs/ai-context.md)
+
+---
 
 ## What Makes It Different
+**Deterministic-first**
+Analysis happens before model reasoning.
 
-- **Deterministic-first**  
-  Specwright prefers Roslyn, diff inspection, and document parsing before model reasoning.
+**Bounded context**
+Inputs are scoped, not dumped.
 
-- **Bounded context by default**  
-  Context is assembled deliberately instead of dumping the whole repo into a prompt.
+**Capabilities over agents**
+Agents are composed from small, testable capabilities.
 
-- **Markdown as source of truth**  
-  Foundation and feature documents stay human-readable, versioned, and portable.
+**Policy-enforced workflows**
+Rules are intended to be enforced, not suggested.
 
-- **Policy-enforced discipline**  
-  Required artifacts, citations, and architecture rules are meant to be checked, not merely suggested.
+**Impact-based governance**
+Workflow rigor adapts based on change impact:
+- L1: local change
+- L2: feature change
+- L3: architectural change
 
-- **Built for brownfield understanding**  
-  The platform is designed to help teams understand existing systems, not just greenfield projects.
+**Workflow integration**
+Specwright augments PRs and CI instead of replacing them.
 
 ## Start Here
+**Understanding the System**
+[docs/architecture.md](/docs/architecture.md)
+[docs/current-state.md](/docs/current-state.md)
+[docs/roadmap.md](/docs/roadmap.md)
+[docs/ai-context.md](/docs/ai-context.md)
 
-### If You Are Evaluating the Product Direction
-
-Read the foundation docs in this order:
-
-1. [`docs/architecture.md`](docs/architecture.md)
-2. [`docs/current-state.md`](docs/current-state.md)
-3. [`docs/roadmap.md`](docs/roadmap.md)
-4. [`docs/ai-context.md`](docs/ai-context.md)
-
-### If You Want to Use the Document Model Right Now
-
-1. Start with the templates in `templates/foundation/`.
-2. Use the examples in `examples/` as style references.
-3. Use `skills/architect.md` and `skills/engineer.md` as a manual workflow layer.
-
-### If You Want the Deep-Dive Architecture Thinking
-
-Read [`new-Specwright-arch-draft.md`](new-Specwright-arch-draft.md). It captures the broader architecture direction that informed the current `docs/` set.
+## Using the Model Today
+templates/ → document structure
+examples/ → reference implementations
+skills/ → manual AI workflow
 
 ## Explore the Project
 
-### `docs/`
+[docs/](/docs/)
+Core system definition:
 
-The new center of gravity for this project.
+- architecture
+- current state
+- roadmap
+- rules and guardrails
 
-- [`docs/architecture.md`](docs/architecture.md): what Specwright is being built to become
-- [`docs/current-state.md`](docs/current-state.md): what is true right now
-- [`docs/roadmap.md`](docs/roadmap.md): phased execution plan
-- [`docs/ai-context.md`](docs/ai-context.md): guardrails and working rules
-- [`docs/decisions/README.md`](docs/decisions/README.md): ADR conventions and decision tracking
+[templates/](/templates/)
+Document templates for:
 
-### `templates/`
+- foundation docs
+- feature specs
+- implementation notes
 
-These are still valuable today. They show the artifact model the platform is designed to generate, enforce, and keep current.
+[examples/](/examples/)
 
-- `templates/foundation/`: templates for `architecture.md`, `current-state.md`, `roadmap.md`, and `ai-context.md`
-- `templates/feature/`: templates for `spec.md` and `implementation-notes.md`
-- `templates/developer/`: `developer-context-template.md`
+Concrete examples of the document model in use.
 
-### `examples/`
+[skills/](/skills/)
 
-Reference examples of filled documents from a production `.NET` feature flag service:
-
-- `examples/architecture-example.md`
-- `examples/current-state-example.md`
-- `examples/roadmap-example.md`
-- `examples/spec-example.md`
-- `examples/implementation-notes-example.md`
-
-These are examples of the document model, not examples of the future Specwright runtime.
-
-### `skills/`
-
-The skill files remain useful as a manual workflow while the platform is being built:
-
-- `skills/architect.md`
-- `skills/engineer.md`
-
-They are still helpful if you want to use the Specwright document model with your current AI tooling today, but they are no longer the whole story.
+Temporary workflow layer for using Specwright before runtime exists.
 
 ## Philosophy
 
-**Specs are not tickets.** A spec should capture design intent, rationale, constraints, and what done means.
-
-**Foundation docs are living system memory.** If they are stale, both humans and AI are working from fiction.
-
-**Deterministic analysis comes before model reasoning.** Models are useful, but they should operate on bounded evidence instead of first-contact guesswork.
-
-**Evidence beats confident prose.** A workflow outcome should be explainable after the fact.
-
-**The engineer is not a transcription service.** Good engineering workflows challenge assumptions, surface risks, and improve the design.
-
-**Model-agnostic where it matters.** The system is `.NET`-first, but its core workflow concepts should not require lock-in to a single model provider.
+- Specs are design documents, not tickets
+- Foundation docs are living system memory
+- Deterministic analysis comes before model reasoning
+- Evidence matters more than confidence
+- Engineers challenge design, not blindly implement it
+- AI operates inside constraints, not outside them
 
 ## Roadmap Snapshot
 
-- **Phase 0:** platform reset + Aspire bootstrap
-- **Phase 1:** analyzer vertical slice
-- **Phase 2:** foundation generator + retrieval hardening
-- **Phase 3:** policy engine + reviewer gate MVP
-- **Phase 4:** CI and observability expansion
-- **Phase 5:** modular extraction + packaging transition
+- Phase 0: foundation stabilization
+- Phase 1: runtime bootstrap (.NET 10 + Aspire)
+- Phase 2: capability system + analyzer
+- Phase 3: agent layer
+- Phase 4: policy enforcement
+- Phase 5: CI/PR integration
+- Phase 6: Aspire orchestration
+- Phase 7: brownfield intelligence
 
-The canonical roadmap lives in [`docs/roadmap.md`](docs/roadmap.md).
+See full roadmap:
+
+[docs/roadmap.md](/docs/roadmap.md)
 
 ## Contributing
 
-Specwright is being built in the open. Ideas, issues, and pull requests are welcome, especially if they help clarify the platform architecture, document model, or bootstrap path.
+Contributions are welcome.
 
-If you are contributing, use the `docs/` set as your starting context for every session.
+If you are contributing:
+
+- start with docs/
+- align with architecture
+- treat docs as source of truth
+- maintain traceability
 
 ## License
 
