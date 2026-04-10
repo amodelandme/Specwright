@@ -160,10 +160,13 @@ move from defined system → executable platform
 
 Start here:
 
-[docs/architecture.md](/docs/architecture.md)
-[docs/current-state.md](/docs/current-state.md)
-[docs/roadmap.md](/docs/roadmap.md)
-[docs/ai-context.md](/docs/ai-context.md)
+[architecture.md](/docs/architecture.md)
+
+[current-state.md](/docs/current-state.md)
+
+[roadmap.md](/docs/roadmap.md)
+
+[ai-context.md](/docs/ai-context.md)
 
 ---
 
@@ -191,10 +194,14 @@ Specwright augments PRs and CI instead of replacing them.
 
 ## Start Here
 **Understanding the System**
-[docs/architecture.md](/docs/architecture.md)
-[docs/current-state.md](/docs/current-state.md)
-[docs/roadmap.md](/docs/roadmap.md)
-[docs/ai-context.md](/docs/ai-context.md)
+
+[architecture.md](/docs/architecture.md)
+
+[dcurrent-state.md](/docs/current-state.md)
+
+[roadmap.md](/docs/roadmap.md)
+
+[ai-context.md](/docs/ai-context.md)
 
 ## Using the Model Today
 templates/ → document structure
