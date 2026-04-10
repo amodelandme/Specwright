@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Specwright.Core\Specwright.Core.csproj" />
+    <ProjectReference Include="..\Specwright.Infrastructure\Specwright.Infrastructure.csproj" />
+    <ProjectReference Include="..\Specwright.ServiceDefaults\Specwright.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

@@ -41,10 +41,6 @@ Also read:
 - the relevant `spec.md`
 - the relevant `implementation-notes.md`
 
-### For active execution
-Also check:
-- `/docs/active-work/ACTIVE_SLICE.md` if present
-
 Do not assume missing context. State what is known, unknown, and how to verify it.
 
 ---

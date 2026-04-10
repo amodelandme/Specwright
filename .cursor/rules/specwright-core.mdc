@@ -38,10 +38,6 @@ For feature work, also consult:
 - the relevant spec.md
 - the relevant implementation-notes.md
 
-For in-progress work, also consult:
-- /docs/active-work/ACTIVE_SLICE.md when present
-- If not present, create a new ACTIVE_SLICE.md file using the template in /docs/active-work/ACTIVE_SLICE_TEMPLATE.md
-
 Do not pretend context exists when it has not been read.
 
 ## Engineering Rules
